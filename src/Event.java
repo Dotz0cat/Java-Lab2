@@ -1,6 +1,13 @@
+import java.time.LocalDateTime;
+
 public abstract class Event implements Comparable<Event> {
     String name;
     LocalDateTime dateTime;
+
+    Event(String name, LocalDateTime dateTime) {
+        this.setName(name);
+        this.setDateTime(dateTime);
+    }
 
     public String getName() {
         return name;
@@ -20,6 +27,6 @@ public abstract class Event implements Comparable<Event> {
 
     @Override
     public int compareTo(Event e) {
-        return 0;
+        return dateTime.compareTo(e.getDateTime());
     }
 }
