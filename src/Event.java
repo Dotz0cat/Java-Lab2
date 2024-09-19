@@ -1,8 +1,8 @@
 import java.time.LocalDateTime;
 
 public abstract class Event implements Comparable<Event> {
-    String name;
-    LocalDateTime dateTime;
+    private String name;
+    private LocalDateTime dateTime;
 
     Event(String name, LocalDateTime dateTime) {
         this.setName(name);
