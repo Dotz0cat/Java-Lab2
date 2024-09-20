@@ -29,4 +29,7 @@ public abstract class Event implements Comparable<Event> {
     public int compareTo(Event e) {
         return dateTime.compareTo(e.getDateTime());
     }
+
+    public abstract String getDisplayName();
+    public abstract String[] getDisplayStrings();
 }

@@ -40,5 +40,22 @@ public class Meeting extends Event implements Completable {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public String getDisplayName() {
+        return "Meeting";
+    }
+
+    @Override
+    public String[] getDisplayStrings() {
+        String[] strings = new String[6];
+        strings[0] = this.getName();
+        strings[1] = this.getDateTime().toString();
+        strings[2] = this.getEndDateTime().toString();
+        strings[3] = this.getLocation();
+        strings[4] = this.getDuration().toString();
+        strings[5] = this.isComplete() ? "Complete" : "Not Complete";
+        return strings;
+    }
 }
 
