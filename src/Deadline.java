@@ -22,10 +22,9 @@ public class Deadline extends Event implements Completable {
 
     @Override
     public String[] getDisplayStrings() {
-        String[] strings = new String[3];
-        strings[0] = this.getName();
-        strings[1] = this.getDateTime().toString();
-        strings[2] = this.isComplete() ? "Complete" : "Not Complete";
+        String[] strings = new String[2];
+        strings[0] = this.getDateTime().format(TIMEFORMAT);
+        strings[1] = this.isComplete() ? "Complete" : "Not Complete";
         return strings;
     }
 }

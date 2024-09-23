@@ -1,5 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
 
 public class Meeting extends Event implements Completable {
     private LocalDateTime endDateTime;
@@ -48,13 +51,12 @@ public class Meeting extends Event implements Completable {
 
     @Override
     public String[] getDisplayStrings() {
-        String[] strings = new String[6];
-        strings[0] = this.getName();
-        strings[1] = this.getDateTime().toString();
-        strings[2] = this.getEndDateTime().toString();
-        strings[3] = this.getLocation();
-        strings[4] = this.getDuration().toString();
-        strings[5] = this.isComplete() ? "Complete" : "Not Complete";
+        String[] strings = new String[5];
+        strings[0] = this.getDateTime().format(TIMEFORMAT);
+        strings[1] = this.getEndDateTime().format(TIMEFORMAT);
+        strings[2] = this.getLocation();
+        strings[3] = this.getDuration().toMinutes() + " Minutes";
+        strings[4] = this.isComplete() ? "Complete" : "Not Complete";
         return strings;
     }
 }
