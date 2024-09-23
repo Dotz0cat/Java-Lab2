@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class EventListPanel extends JPanel {
     private ArrayList<Event> events;
@@ -75,10 +76,25 @@ public class EventListPanel extends JPanel {
 
         //sortDropDown needs to be implemented with a lambda
         this.sortDropDown.addActionListener(actionEvent -> {
-
+            switch (sortDropDown.getSelectedItem().toString()) {
+                case "Name Ascending":
+                    events.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()));
+                    break;
+                case "Name Descending":
+                    events.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()) * -1);
+                    break;
+                case "Date Descending":
+                    events.sort((e1, e2) -> e1.getDateTime().compareTo(e2.getDateTime()) * -1);
+                    break;
+                case "Date Ascending":
+                default:
+                    Collections.sort(events);
+                    break;
+            }
+            updateDisplay();
         });
 
-        //the layout contraints for the filters
+        //the layout constraints for the filters
         GridBagConstraints filterConstraints = new GridBagConstraints();
         filterConstraints.gridy = 1;
 
