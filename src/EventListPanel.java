@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class EventListPanel extends JPanel {
     private ArrayList<Event> events;
@@ -112,9 +113,14 @@ public class EventListPanel extends JPanel {
             this.filterDisplay.add(filterBox);
             this.controlPanel.add(filterBox, filterConstraints);
         }
+
+        //this.displayPanel.setLayout(new GridLayout(0, 1));
     }
 
     public void addEvent(Event event) {
+        //don't add the event if it is null
+        if (Objects.isNull(event)) return;
+
         this.events.add(event);
 
         this.updateDisplay();
@@ -165,13 +171,13 @@ public class EventListPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             //needs to start an addEventModal
-            //AddEventModal dialog = new AddEventModal();
+            AddEventModal dialog = new AddEventModal();
+            dialog.setVisible(true);
 
-//            //get data from it
-//            Event event = mew deadline();
-//
-//            //send it to addEvent()
-//            addEvent(event);
+            //send it to addEvent()
+            addEvent(dialog.getEvent());
+
+            updateDisplay();
 
         }
     }
