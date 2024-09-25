@@ -15,8 +15,10 @@ public class MeetingModal extends JPanel implements ModalSelector {
     MeetingModal() {
         super();
 
+        //set a grid layout
         this.setLayout(new GridLayout(0, 2));
 
+        //make the entry fields and labels for them
         this.nameField = new JTextField();
         this.nameFieldLabel = new JLabel("Name:");
         this.startTimeField = new DateTimePicker();
@@ -26,17 +28,21 @@ public class MeetingModal extends JPanel implements ModalSelector {
         this.locationField = new JTextField();
         this.locationFieldLabel = new JLabel("Location:");
 
-        this.add(nameFieldLabel);
-        this.add(nameField);
+        //add the namefield and it label to the JPanel
+        this.add(this.nameFieldLabel);
+        this.add(this.nameField);
 
-        this.add(startTimeFieldLabel);
-        this.add(startTimeField);
+        //add the startTime field and its label to the JPanel
+        this.add(this.startTimeFieldLabel);
+        this.add(this.startTimeField);
 
-        this.add(endTimeFieldLabel);
-        this.add(endTimeField);
+        //add the endTime field and its label to the JPanel
+        this.add(this.endTimeFieldLabel);
+        this.add(this.endTimeField);
 
-        this.add(locationFieldLabel);
-        this.add(locationField);
+        //add the location field and its label to the JPanel
+        this.add(this.locationFieldLabel);
+        this.add(this.locationField);
     }
 
     @Override
@@ -46,10 +52,13 @@ public class MeetingModal extends JPanel implements ModalSelector {
         LocalDateTime endTime;
         String location;
 
+        //get the data from the fields in the JPanel
         name = this.nameField.getText();
         startTime = this.startTimeField.getDateTime();
         endTime = this.endTimeField.getDateTime();
         location = this.locationField.getText();
+
+        //make a new meeting with that data
         return new Meeting(name, startTime, endTime, location);
     }
 }

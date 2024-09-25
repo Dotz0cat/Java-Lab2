@@ -3,8 +3,6 @@ import java.time.LocalDateTime;
 
 public class EventPlanner {
     public static void main(String[] argv) {
-        System.out.printf("I am supposed to be graphical\n");
-
         JFrame frame = new JFrame("Event Planner");
         EventListPanel eventList = new EventListPanel();
         addDefaultEvents(eventList);

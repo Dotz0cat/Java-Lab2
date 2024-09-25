@@ -62,6 +62,7 @@ public class EventListPanel extends JPanel {
         this.addEventButton.setFont(this.FONT);
         this.sortDropDown.setFont(this.FONT);
 
+        //constraints for the sortDropDown and addEventButton
         GridBagConstraints buttonDropDownConstraints = new GridBagConstraints();
         buttonDropDownConstraints.fill = GridBagConstraints.HORIZONTAL;
         buttonDropDownConstraints.anchor = GridBagConstraints.PAGE_START;
@@ -113,8 +114,6 @@ public class EventListPanel extends JPanel {
             this.filterDisplay.add(filterBox);
             this.controlPanel.add(filterBox, filterConstraints);
         }
-
-        //this.displayPanel.setLayout(new GridLayout(0, 1));
     }
 
     public void addEvent(Event event) {
@@ -127,22 +126,23 @@ public class EventListPanel extends JPanel {
     }
 
     private boolean isFiltered(Event event) {
+        boolean filtered = false;
         for (JCheckBox filter : filterDisplay) {
             if (filter.isSelected()) {
                 switch (filter.getText()) {
-                    case "Complete Tasks":
-                        if (event instanceof Completable) {
-                            return ((Completable) event).isComplete();
+                    case "Meetings":
+                        if (event instanceof Meeting) {
+                            filtered |= true;
                         }
                         break;
                     case "Deadlines":
                         if (event instanceof Deadline) {
-                            return true;
+                            filtered |= true;
                         }
                         break;
-                    case "Meetings":
-                        if (event instanceof Meeting) {
-                            return true;
+                    case "Complete Tasks":
+                        if (event instanceof Completable) {
+                            filtered |= ((Completable) event).isComplete();
                         }
                         break;
                     default:
@@ -150,7 +150,7 @@ public class EventListPanel extends JPanel {
                 }
             }
         }
-        return false;
+        return filtered;
     }
 
     public void updateDisplay() {
@@ -177,6 +177,7 @@ public class EventListPanel extends JPanel {
             //send it to addEvent()
             addEvent(dialog.getEvent());
 
+            //update the display to show the new event
             updateDisplay();
 
         }

@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class EventPanel extends JPanel {
     private Event event;
@@ -46,6 +45,7 @@ public class EventPanel extends JPanel {
         this.event = event;
     }
 
+    //not implemented
     public void updateUrgency() {
         return;
     }
